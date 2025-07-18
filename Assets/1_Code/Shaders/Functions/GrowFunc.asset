@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: GrowFunc
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor v1.9.2\n// Available at the
+    Unity Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=19200\nNode;AmplifyShaderEditor.PosVertexDataNode;11;-985.0698,-578.0765;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleAddOpNode;12;-716.0698,-542.0765;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.NormalVertexDataNode;1;-1259.01,-312.1768;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;2;-904.3438,-206.0647;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;0;0,0;Inherit;False;True;-1;Alpha;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;14;-62.06982,-159.0765;Inherit;False;False;-1;Vertex
+    Position;1;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.TextureCoordinatesNode;15;-1845.07,-5.076508;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.FunctionInput;13;-1501.07,-166.0765;Inherit;False;Scale;1;2;False;1;0;FLOAT;0.27;False;1;FLOAT;0\nNode;AmplifyShaderEditor.OneMinusNode;19;-1552.348,28.42632;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleSubtractOpNode;7;-1322.344,69.9353;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0.24;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleSubtractOpNode;21;-1330.047,304.0267;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0.24;False;1;FLOAT;0\nNode;AmplifyShaderEditor.OneMinusNode;3;-836.6438,197.6353;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;10;-841.3701,-78.2765;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SaturateNode;9;-1018.57,87.12345;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.ConditionalIfNode;17;-1079.15,276.7267;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;8;-1856.642,159.3628;Inherit;False;Grow;1;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;20;-1814.948,359.9262;Inherit;False;Shrink;1;1;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;12;0;11;0\nWireConnection;12;1;2;0\nWireConnection;2;0;1;0\nWireConnection;2;1;10;0\nWireConnection;0;0;3;0\nWireConnection;14;0;12;0\nWireConnection;19;0;15;2\nWireConnection;7;0;19;0\nWireConnection;7;1;20;0\nWireConnection;21;0;15;2\nWireConnection;21;1;8;0\nWireConnection;3;0;9;0\nWireConnection;10;0;13;0\nWireConnection;10;1;9;0\nWireConnection;9;0;17;0\nWireConnection;17;0;8;0\nWireConnection;17;2;21;0\nWireConnection;17;3;7;0\nASEEND*/\n//CHKSM=B1C9F642B9B5700CA8F6B31D375643514AB453CE"
+  m_functionName: 
+  m_description: Use Alpha Clip Threshold to make a nice smooth opening!
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 0
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_customEdited: 0
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 3
+  m_headerStyle: 0
+  m_headerColor: {r: 1, g: 0.4, b: 0, a: 1}
+  m_customNodeCategory: 
+  m_previewPosition: 0
+  m_hidden: 0
+  m_url: 

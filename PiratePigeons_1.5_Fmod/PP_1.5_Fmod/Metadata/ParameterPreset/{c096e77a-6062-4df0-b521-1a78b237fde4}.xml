@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{c096e77a-6062-4df0-b521-1a78b237fde4}">
+		<property name="name">
+			<value>Stormy</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b5cdac5d-dff6-4e1d-b443-09758ffc522b}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{534018c9-a915-4b8a-92fc-9aacb743300b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{534018c9-a915-4b8a-92fc-9aacb743300b}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.40999999642372131</value>
+		</property>
+	</object>
+</objects>

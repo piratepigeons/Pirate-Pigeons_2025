@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Floor
+  - Water
+  - Egg
+  - KillZone
+  - Island
+  - Tentacle
+  - WaitingPoint
+  - PlayerIndicator
+  - Visuals
+  - Hat
+  - MoveWithBoat
+  - Player_SmallerHitbox
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - WaterInteractor
+  - Water
+  - UI
+  - Tasks
+  - Walkable
+  - noCollision
+  - Island
+  - Tentacle
+  - PickUpAble
+  - Metaball
+  - WaterRenderTexture
+  - RainCollision
+  - OnlyRaftCollider
+  - ShowWhenObscured
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

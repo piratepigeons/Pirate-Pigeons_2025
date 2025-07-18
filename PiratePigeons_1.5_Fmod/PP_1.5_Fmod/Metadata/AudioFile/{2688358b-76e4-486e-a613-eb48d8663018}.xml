@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2688358b-76e4-486e-a613-eb48d8663018}">
+		<property name="assetPath">
+			<value>Footstep_Water_05.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.65410416666666671</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2ec76774-ecbf-42c4-a33d-5346eeea74bc}</destination>
+		</relationship>
+	</object>
+</objects>

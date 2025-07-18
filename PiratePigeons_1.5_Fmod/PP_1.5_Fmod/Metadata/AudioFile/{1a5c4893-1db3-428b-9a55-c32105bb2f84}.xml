@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1a5c4893-1db3-428b-9a55-c32105bb2f84}">
+		<property name="assetPath">
+			<value>PiratePigeons_3mel_vl_storm.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>53.217416666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2ec76774-ecbf-42c4-a33d-5346eeea74bc}</destination>
+		</relationship>
+	</object>
+</objects>

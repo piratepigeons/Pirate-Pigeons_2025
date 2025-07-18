@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0196c1a5-4feb-48f0-ba1a-5a528e32dce2}">
+		<property name="assetPath">
+			<value>FixLeak3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.55</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2ec76774-ecbf-42c4-a33d-5346eeea74bc}</destination>
+		</relationship>
+	</object>
+</objects>

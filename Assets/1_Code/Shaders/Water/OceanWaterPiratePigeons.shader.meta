@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e3fb1d5fc1263bb4c92ce77294c8357c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _FingerprintNormal: {fileID: 2800000, guid: 891b58d258aee57428dbae61940102a0,
+      type: 3}
+  - _Roughness: {fileID: 2800000, guid: b2574d2b7187e384693500cfc05ecec1, type: 3}
+  - _GlobalEffectRT: {fileID: 8400000, guid: 3d4f5a32554a24a49b9d038c3e016033, type: 2}
+  - _WaterNormal: {fileID: 2800000, guid: dd2fd2df93418444c8e280f1d34deeb5, type: 3}
+  - _foam: {fileID: 2800000, guid: 00e7da61b5b32694bb7f7e3147380eac, type: 3}
+  - _heightFoam: {fileID: 2800000, guid: 00e7da61b5b32694bb7f7e3147380eac, type: 3}
+  - _Caust: {fileID: 2800000, guid: c0461403fbc2d97429f557c0b1c3e1ab, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

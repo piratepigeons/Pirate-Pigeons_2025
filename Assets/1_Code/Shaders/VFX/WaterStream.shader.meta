@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2ef9e1b82a330374a9caa1baad9fd96e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _FingerprintNormal: {fileID: 2800000, guid: 891b58d258aee57428dbae61940102a0,
+      type: 3}
+  - _Roughness: {fileID: 2800000, guid: b2574d2b7187e384693500cfc05ecec1, type: 3}
+  - _Normal: {fileID: 2800000, guid: 003fef16002ba634d86005885c91d256, type: 3}
+  - _Normal1: {fileID: 2800000, guid: 003fef16002ba634d86005885c91d256, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

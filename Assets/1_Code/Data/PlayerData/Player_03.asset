@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05406442924d084584a188cee5016e9, type: 3}
+  m_Name: Player_03
+  m_EditorClassIdentifier: 
+  playerName: Kyle
+  playerPortrait: {fileID: 21300000, guid: 89993cc402118b84f913ceb1f2fb4405, type: 3}
+  playerHatSprite: {fileID: 21300000, guid: 42fd86ac4dfdb004d9bedcdf8345574b, type: 3}
+  playerModel: {fileID: 56490353122212742, guid: 5225433f0b7be4442b3298a95ec94892,
+    type: 3}
+  playerInflatedModel: {fileID: 102730955102638728, guid: 54417de7c0a02b9408324bd5e1742cc2,
+    type: 3}
+  hat: {fileID: -220440136374852428, guid: e90d8ec56554415409030ee37343995d, type: 3}
+  playerMat: {fileID: 2100000, guid: 96dec48ca8dbfd64882e227f5de9cb46, type: 2}
+  points: 0

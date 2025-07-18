@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2d7c7e11-99c2-4c98-86ce-d0257e860f5b}">
+		<property name="assetPath">
+			<value>PiratePigeons_str_rh.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>53.217416666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2ec76774-ecbf-42c4-a33d-5346eeea74bc}</destination>
+		</relationship>
+	</object>
+</objects>

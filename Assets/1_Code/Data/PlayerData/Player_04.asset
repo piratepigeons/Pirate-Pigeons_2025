@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05406442924d084584a188cee5016e9, type: 3}
+  m_Name: Player_04
+  m_EditorClassIdentifier: 
+  playerName: Polly
+  playerPortrait: {fileID: 21300000, guid: 63ceb0d2ca4b037419c2927a3f2ea98b, type: 3}
+  playerHatSprite: {fileID: 21300000, guid: 04092ca72dad33f4aab8942fb0de0ef8, type: 3}
+  playerModel: {fileID: 2241168409822379533, guid: f90fb2d251b32ae48b47b7648aa6ded8,
+    type: 3}
+  playerInflatedModel: {fileID: 4201766480528035499, guid: 22d9cef78b457f048be5644252a6845f,
+    type: 3}
+  hat: {fileID: -6974960778582061098, guid: 97b2ed4064b489e4194ec56ee72acee7, type: 3}
+  playerMat: {fileID: 2100000, guid: 96dec48ca8dbfd64882e227f5de9cb46, type: 2}
+  points: 144
