@@ -9,25 +9,25 @@ EditorBuildSettings:
     path: Assets/5_Scenes/GameLoop/Main Menu.unity
     guid: 79bfde648d81ab444b61e07c6eaf93f1
   - enabled: 1
-    path: Assets/4_Scenes/MenuXselection Scenes/TitleScreen.unity
+    path: Assets/0_Scenes/MenuXselection Scenes/TitleScreen.unity
     guid: 864b924969f643c488d668d8c0549d9b
   - enabled: 1
-    path: Assets/4_Scenes/MenuXselection Scenes/CharacterCustomization.unity
+    path: Assets/0_Scenes/MenuXselection Scenes/CharacterCustomization.unity
     guid: 2e645e9100409b648b213aa0acbed9c6
   - enabled: 1
-    path: Assets/4_Scenes/Levels/BalanceMode/LV_BalanceMode.unity
+    path: Assets/0_Scenes/Levels/BalanceMode/LV_BalanceMode.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/6_Personal Folders/Pietro/MultiplayerTesting.unity
     guid: 98bbff18b120a7b489c46caee09ca67f
   - enabled: 1
-    path: Assets/4_Scenes/Levels/BalanceMode/LoseScene.unity
+    path: Assets/0_Scenes/Levels/BalanceMode/LoseScene.unity
     guid: d48ac8b1980ece2409131b36dfa727f1
   - enabled: 1
-    path: Assets/4_Scenes/Levels/BalanceMode/WinScene.unity
+    path: Assets/0_Scenes/Levels/BalanceMode/WinScene.unity
     guid: 92a418b0253740544a5bc1a34fc291ef
   - enabled: 1
-    path: Assets/4_Scenes/MenuXselection Scenes/LevelSelection.unity
+    path: Assets/0_Scenes/MenuXselection Scenes/LevelSelection.unity
     guid: 80998c7bcf5726b42936013c61e478a3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d695b3b59b057824488ac9cc95f5b32e,
