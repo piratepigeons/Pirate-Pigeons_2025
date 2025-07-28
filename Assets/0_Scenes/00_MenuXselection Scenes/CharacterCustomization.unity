@@ -610,7 +610,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c4faf1b01f5f224baa483fc343a2a52, type: 2}
+  - {fileID: 2100000, guid: 9d0a2cc899994b34d8e156d864bc90e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6831,11 +6831,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453895538}
     m_Modifications:
-    - target: {fileID: 4944434634542047995, guid: 022b617d8d57a604bbc6e085f60515fd,
-        type: 3}
-      propertyPath: blackscreen
-      value: 
-      objectReference: {fileID: 567042630}
     - target: {fileID: 7800250983728632408, guid: 022b617d8d57a604bbc6e085f60515fd,
         type: 3}
       propertyPath: currentState
@@ -8529,6 +8524,7 @@ MonoBehaviour:
   text: {fileID: 1187517925}
   text2: {fileID: 1339195996}
   sceneChanger: {fileID: 567207156}
+  sceneToLoadName: LevelSelection
   currentPlayersOnPlatform: 0
 --- !u!65 &1896686054
 BoxCollider:
@@ -9706,6 +9702,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 452c6356b0c26db43824e085757588dc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a2e1363a45c9d3348a22c90201f788b0, type: 2}
     - target: {fileID: 919132149155446097, guid: 452c6356b0c26db43824e085757588dc,
         type: 3}
       propertyPath: m_Name

@@ -75,7 +75,8 @@ MonoBehaviour:
   blackscreen: {fileID: 0}
   longFadeTime: 3
   mainMenuName: TitleScreen
-  characterSelectSceneName: 
-  playSceneName: LV_BalanceMode
+  characterSelectSceneName: CharacterCustomization
+  levelSelectSceneName: LevelSelection
+  Level_n_SceneName: LV_BalanceMode
   loseScreenName: LoseScene
   winScreenName: WinScene
