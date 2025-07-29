@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f12048f482106e45952e50b554abb18
+guid: 07c215f21183ef34eb61fa89010b5155
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: EnvironmentShader
-    second: {fileID: 2100000, guid: d0948845bf0118a4d90d107e878bad87, type: 2}
+      name: HalloweenBits
+    second: {fileID: 2100000, guid: 96dec48ca8dbfd64882e227f5de9cb46, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
