@@ -6,9 +6,9 @@ using UnityEditor;
 
 namespace FMODUnity
 {
-    public class CreateEventPopup : EditorWindow
-    {
-        private class FolderEntry
+    class CreateEventPopup : EditorWindow
+    {        
+        class FolderEntry
         {
             public FolderEntry parent;
             public string name;
@@ -17,32 +17,21 @@ namespace FMODUnity
             public Rect rect;
         }
 
-        private SerializedProperty outputProperty;
-
-        private FolderEntry rootFolder;
-        private FolderEntry currentFolder;
-        private List<BankEntry> banks;
-
-        private int lastHover = 0;
-        private string eventFolder = "/";
-        private string eventName = "";
-        private string currentFilter = "";
-        private int selectedBank = 0;
-        private bool resetCursor = true;
-        private Vector2 scrollPos = new Vector2();
-        private Rect scrollRect = new Rect();
-        private bool isConnected = false;
-
+        SerializedProperty outputProperty;
         internal void SelectEvent(SerializedProperty property)
         {
             outputProperty = property;
         }
 
-        private class BankEntry
+        class BankEntry
         {
             public string name;
             public string guid;
         }
+
+        FolderEntry rootFolder;
+        FolderEntry currentFolder;
+        List<BankEntry> banks;
 
         public CreateEventPopup()
         {
@@ -57,32 +46,20 @@ namespace FMODUnity
             wantsMouseMove = true;
             banks = new List<BankEntry>();
 
-            const string buildBankTreeFunc =
-                @"function() {
-                    var output = """";
-                    const items = [ studio.project.workspace.masterBankFolder ];
-                    while (items.length > 0) {
-                        var currentItem = items.shift();
-                        if (currentItem.isOfType(""BankFolder"")) {
-                            currentItem.items.reverse().forEach(function(val) {
-                                items.unshift(val);
-                            });
-                        } else {
-                            output += "","" + currentItem.id + currentItem.getPath().replace(""bank:/"", """");
-                        }
-                    }
-                    return output;
-                }";
-
-            string bankList = EditorUtils.GetScriptOutput(string.Format("({0})()", buildBankTreeFunc));
+            EditorUtils.GetScriptOutput("children = \"\";");
+            EditorUtils.GetScriptOutput("func = function(val) {{ children += \",\" + val.id + val.name; }};");
+            EditorUtils.GetScriptOutput("studio.project.workspace.masterBankFolder.items.forEach(func, this); ");
+            string bankList = EditorUtils.GetScriptOutput("children;");
             string[] bankListSplit = bankList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var bank in bankListSplit)
+            foreach(var bank in bankListSplit)
             {
                 var entry = new BankEntry();
                 entry.guid = bank.Substring(0, 38);
                 entry.name = bank.Substring(38);
                 banks.Add(entry);
             }
+
+            banks.Sort((a, b) => a.name.CompareTo(b.name));
         }
 
         private void BuildTreeItem(FolderEntry entry)
@@ -94,7 +71,7 @@ namespace FMODUnity
             string itemCountString = EditorUtils.GetScriptOutput("cur.items.length;");
             int itemCount;
             Int32.TryParse(itemCountString, out itemCount);
-
+            
             // iterate children looking for folder
             for (int item = 0; item < itemCount; item++)
             {
@@ -124,9 +101,19 @@ namespace FMODUnity
             }
         }
 
+        int lastHover = 0;
+        string eventFolder = "/";
+        string eventName = "";
+        string currentFilter = "";
+        int selectedBank = 0;
+        bool resetCursor = true;
+        Vector2 scrollPos = new Vector2();
+        Rect scrollRect = new Rect();
+        bool isConnected = false;
+
         public void OnGUI()
         {
-            var borderIcon = EditorUtils.LoadImage("Border.png");
+            var borderIcon = EditorGUIUtility.Load("FMOD/Border.png") as Texture2D;
             var border = new GUIStyle(GUI.skin.box);
             border.normal.background = borderIcon;
             GUI.Box(new Rect(1, 1, position.width - 1, position.height - 1), GUIContent.none, border);
@@ -150,8 +137,9 @@ namespace FMODUnity
                 currentFolder = rootFolder;
             }
 
-            var arrowIcon = EditorUtils.LoadImage("ArrowIcon.png");
-            var hoverIcon = EditorUtils.LoadImage("SelectedAlt.png");
+            var arrowIcon = EditorGUIUtility.Load("FMOD/ArrowIcon.png") as Texture;
+            var hoverIcon = EditorGUIUtility.Load("FMOD/SelectedAlt.png") as Texture2D;
+            var titleIcon = EditorGUIUtility.Load("IN BigTitle") as Texture2D;
 
             var nextEntry = currentFolder;
 
@@ -174,7 +162,7 @@ namespace FMODUnity
                 if (Event.current.keyCode == KeyCode.DownArrow)
                 {
                     if (Event.current.type == EventType.KeyDown)
-                    {
+                    { 
                         lastHover = Math.Min(lastHover + 1, filteredEntries.Count - 1);
                         if (filteredEntries[lastHover].rect.y + filteredEntries[lastHover].rect.height > scrollPos.y + scrollRect.height)
                         {
@@ -211,7 +199,7 @@ namespace FMODUnity
 
             {
                 GUI.SetNextControlName("name");
-
+                
                 EditorGUILayout.LabelField("Name");
                 eventName = EditorGUILayout.TextField(eventName);
             }
@@ -247,8 +235,9 @@ namespace FMODUnity
             // Draw the current folder as a title bar, click to go back one level
             {
                 Rect currentRect = EditorGUILayout.GetControlRect();
-
+                
                 var bg = new GUIStyle(GUI.skin.box);
+                bg.normal.background = titleIcon;
                 Rect bgRect = new Rect(currentRect);
                 bgRect.x = 2;
                 bgRect.width = position.width-4;
@@ -262,8 +251,8 @@ namespace FMODUnity
                 }
 
                 Rect labelRect = currentRect;
-                labelRect.x += arrowIcon.width;
-                labelRect.width -= arrowIcon.width;
+                labelRect.x += arrowIcon.width + 50;
+                labelRect.width -= arrowIcon.width + 50;
                 GUI.Label(labelRect, currentFolder.name != null ? currentFolder.name : "Folders", EditorStyles.boldLabel);
 
                 if (Event.current.type == EventType.MouseDown && currentRect.Contains(Event.current.mousePosition) &&
@@ -280,7 +269,7 @@ namespace FMODUnity
             hover.normal.background = hoverIcon;
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false);
-
+            
             for (int i = 0; i < filteredEntries.Count; i++)
             {
                 var entry = filteredEntries[i];
@@ -352,7 +341,7 @@ namespace FMODUnity
                 }
 
                 string fullPath = "event:" + eventFolder + eventName;
-                outputProperty.SetEventReference(FMOD.GUID.Parse(eventGuid), fullPath);
+                outputProperty.stringValue = fullPath;
                 EditorUtils.UpdateParamsOnEmitter(outputProperty.serializedObject, fullPath);
                 outputProperty.serializedObject.ApplyModifiedProperties();
             }

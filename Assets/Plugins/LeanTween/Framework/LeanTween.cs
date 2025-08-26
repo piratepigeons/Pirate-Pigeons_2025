@@ -2860,10 +2860,7 @@ public class LeanTween : MonoBehaviour {
         }
     }
 
-    public static void delayedCall(float fadeTime, object v)
-    {
-        throw new NotImplementedException();
-    }
+
 } // End LeanTween class
 
 public class LTUtility {

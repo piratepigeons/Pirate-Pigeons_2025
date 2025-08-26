@@ -13,8 +13,8 @@ namespace FMODUnity
         public string CollisionTag;
         public bool PreloadSamples;
         private bool isQuitting;
-
-        private void HandleGameEvent(LoaderGameEvent gameEvent)
+        
+        void HandleGameEvent(LoaderGameEvent gameEvent)
         {
             if (LoadEvent == gameEvent)
             {
@@ -26,18 +26,18 @@ namespace FMODUnity
             }
         }
 
-        private void Start()
+        void Start()
         {
             RuntimeUtils.EnforceLibraryOrder();
             HandleGameEvent(LoaderGameEvent.ObjectStart);
         }
 
-        private void OnApplicationQuit()
+        void OnApplicationQuit()
         {
             isQuitting = true;
         }
 
-        private void OnDestroy()
+        void OnDestroy()
         {
             if (!isQuitting)
             {
@@ -45,8 +45,8 @@ namespace FMODUnity
             }
         }
 
-#if UNITY_PHYSICS_EXIST
-        private void OnTriggerEnter(Collider other)
+        #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+        void OnTriggerEnter(Collider other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
@@ -54,17 +54,17 @@ namespace FMODUnity
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        void OnTriggerExit(Collider other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
                 HandleGameEvent(LoaderGameEvent.TriggerExit);
             }
         }
-#endif
+        #endif
 
-#if UNITY_PHYSICS2D_EXIST
-        private void OnTriggerEnter2D(Collider2D other)
+        #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+        void OnTriggerEnter2D(Collider2D other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
@@ -72,21 +72,21 @@ namespace FMODUnity
             }
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        void OnTriggerExit2D(Collider2D other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
                 HandleGameEvent(LoaderGameEvent.TriggerExit2D);
             }
         }
-#endif
+        #endif
 
-        private void OnEnable()
+        void OnEnable()
         {
             HandleGameEvent(LoaderGameEvent.ObjectEnable);
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             HandleGameEvent(LoaderGameEvent.ObjectDisable);
         }
@@ -101,10 +101,10 @@ namespace FMODUnity
                 }
                 catch (BankLoadException e)
                 {
-                    RuntimeUtils.DebugLogException(e);
+                    UnityEngine.Debug.LogException(e);
                 }
             }
-            RuntimeManager.WaitForAllSampleLoading();
+            RuntimeManager.WaitForAllLoads();
         }
 
         public void Unload()

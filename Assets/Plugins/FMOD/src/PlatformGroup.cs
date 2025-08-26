@@ -9,22 +9,17 @@ namespace FMODUnity
     public class PlatformGroup : Platform
     {
         [SerializeField]
-        private string displayName;
+        public string displayName;
 
         [SerializeField]
         private Legacy.Platform legacyIdentifier;
 
-        internal override string DisplayName { get { return displayName; } }
-        internal override void DeclareRuntimePlatforms(Settings settings) { }
+        public override string DisplayName { get { return displayName; } }
+        public override void DeclareUnityMappings(Settings settings) { }
 #if UNITY_EDITOR
-        internal override IEnumerable<BuildTarget> GetBuildTargets()
-        {
-            yield break;
-        }
+        public override Legacy.Platform LegacyIdentifier { get { return legacyIdentifier; } }
 
-        internal override Legacy.Platform LegacyIdentifier { get { return legacyIdentifier; } }
-
-        internal static PlatformGroup Create(string displayName, Legacy.Platform legacyIdentifier)
+        public static PlatformGroup Create(string displayName, Legacy.Platform legacyIdentifier)
         {
             PlatformGroup group = CreateInstance<PlatformGroup>();
             group.Identifier = GUID.Generate().ToString();
@@ -35,17 +30,12 @@ namespace FMODUnity
             return group;
         }
 
-        protected override BinaryAssetFolderInfo GetBinaryAssetFolder(BuildTarget buildTarget)
-        {
-            return null;
-        }
-
-        protected override IEnumerable<FileRecord> GetBinaryFiles(BuildTarget buildTarget, bool allVariants, string suffix)
+        protected override IEnumerable<string> GetRelativeBinaryPaths(BuildTarget buildTarget, bool allVariants, string suffix)
         {
             yield break;
         }
 
-        internal override OutputType[] ValidOutputTypes { get { return null; } }
+        public override OutputType[] ValidOutputTypes { get { return null; } }
 #endif
     }
 }

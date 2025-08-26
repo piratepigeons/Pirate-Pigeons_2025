@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace FMODUnity
 {
+    [InitializeOnLoad]
     public class BankRefresher
     {
         private static string currentWatchPath;
@@ -14,14 +15,14 @@ namespace FMODUnity
         private static bool autoRefresh = true;
         private static float nextFilePollTime = float.MinValue;
 
-        private const int FilePollPeriod = 5;
+        const int FilePollPeriod = 5;
 
         public static void DisableAutoRefresh()
         {
             autoRefresh = false;
         }
 
-        public static void Startup()
+        static BankRefresher()
         {
             sourceFileWatcher = new FileSystemWatcher();
             sourceFileWatcher.IncludeSubdirectories = true;
@@ -34,12 +35,12 @@ namespace FMODUnity
             EditorApplication.update += Update;
         }
 
-        private static void OnSourceFileChanged(object source, FileSystemEventArgs e)
+        static void OnSourceFileChanged(object source, FileSystemEventArgs e)
         {
             sourceFilesChanged = true;
         }
 
-        private static void Update()
+        static void Update()
         {
             UpdateFileWatcherPath();
             CheckSourceFilesChanged();
@@ -78,7 +79,7 @@ namespace FMODUnity
                 }
                 catch (ArgumentException e)
                 {
-                    RuntimeUtils.DebugLogWarningFormat("Error watching {0}: {1}", pathToWatch, e.Message);
+                    Debug.LogWarningFormat("Error watching {0}: {1}", pathToWatch, e.Message);
                 }
             }
         }
@@ -129,7 +130,7 @@ namespace FMODUnity
             BankRefreshWindow.HandleBankRefresh(result);
         }
 
-        private static bool IsWindowEnabled()
+        static bool IsWindowEnabled()
         {
             Settings settings = Settings.Instance;
 

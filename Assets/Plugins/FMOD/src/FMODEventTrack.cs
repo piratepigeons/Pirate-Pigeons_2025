@@ -1,10 +1,14 @@
-﻿#if UNITY_TIMELINE_EXIST
+﻿#if (UNITY_TIMELINE_EXIST || !UNITY_2019_1_OR_NEWER)
 
 using System;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace FMODUnity
 {
@@ -49,11 +53,17 @@ namespace FMODUnity
             /*
              * Process frame is called from OnGUI() when auditioning.
              * Check playing to avoid retriggering sounds while scrubbing or repainting.
+             * Check IsQuitting to avoid accessing the RuntimeManager during the Play-In-Editor to Editor transition.
              */
             bool playing = playable.GetGraph().IsPlaying();
             if (!playing)
             {
                 return;
+            }
+            /* When auditioning manually update the StudioSystem in place of the RuntimeManager. */
+            if (!Application.isPlaying)
+            {
+                FMODUnity.RuntimeManager.StudioSystem.update();
             }
 #endif //UNITY_EDITOR
 

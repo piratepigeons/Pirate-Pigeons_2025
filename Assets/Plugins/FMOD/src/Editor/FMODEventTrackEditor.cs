@@ -1,4 +1,4 @@
-﻿#if UNITY_TIMELINE_EXIST
+﻿#if UNITY_TIMELINE_EXIST && UNITY_2019_2_OR_NEWER
 
 using UnityEditor;
 using UnityEditor.Timeline;
@@ -10,7 +10,7 @@ namespace FMODUnity
     [CustomTimelineEditor(typeof(FMODEventTrack))]
     public class FMODEventTrackEditor : TrackEditor
     {
-        private static readonly Texture2D icon = EditorUtils.LoadImage("StudioIcon.png");
+        static readonly Texture2D icon = EditorGUIUtility.Load("FMOD/StudioIcon.png") as Texture2D;
 
         public override TrackDrawOptions GetTrackOptions(TrackAsset track, Object binding)
         {

@@ -16,14 +16,14 @@ namespace FMODUnity
         public EmitterRef[] Emitters;
         public EmitterGameEvent TriggerEvent;
 
-        private void Awake()
+        void Awake()
         {
             for (int i = 0; i < Emitters.Length; i++)
             {
                 var emitterRef = Emitters[i];
-                if (emitterRef.Target != null && !emitterRef.Target.EventReference.IsNull)
+                if (emitterRef.Target != null && !string.IsNullOrEmpty(emitterRef.Target.Event))
                 {
-                    FMOD.Studio.EventDescription eventDesc = RuntimeManager.GetEventDescription(emitterRef.Target.EventReference);
+                    FMOD.Studio.EventDescription eventDesc = FMODUnity.RuntimeManager.GetEventDescription(emitterRef.Target.Event);
                     if (eventDesc.isValid())
                     {
                         for (int j = 0; j < Emitters[i].Params.Length; j++)
@@ -36,7 +36,6 @@ namespace FMODUnity
                 }
             }
         }
-
         protected override void HandleGameEvent(EmitterGameEvent gameEvent)
         {
             if (TriggerEvent == gameEvent)
