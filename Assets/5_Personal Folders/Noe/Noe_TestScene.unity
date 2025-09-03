@@ -2435,8 +2435,6 @@ MonoBehaviour:
   maxSpeed: 250
   speedIncrease: 4
   speedDecrease: 10
-  speedThreshhold: 0.1
-  hamsterWheelSpeed: 0
 --- !u!114 &289205134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6782,8 +6780,6 @@ MonoBehaviour:
   maxSpeed: 250
   speedIncrease: 5
   speedDecrease: 10
-  speedThreshhold: 0.1
-  hamsterWheelSpeed: 0
 --- !u!114 &707482724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11550,15 +11546,9 @@ MonoBehaviour:
   moveSpeedMultiplier: 30
   maxForwardSpeed: 40
   maxBackwardsSpeed: -3
-  useRotaionSteering: 0
+  isTurnRotation: 0
   rotationSpeedMultiplier: 2.5
-  rotationInertia: 180
-  useSlideSteering: 0
-  slideSpeedMultiplier: 118
-  slideInertia: 2
-  speedInfluence: 0
-  speedInfluenceCeiling: 15
-  slideRotationSensitivity: 2
+  boundDistance: 0
   hWheelLSpeed: 5
   hWheelRSpeed: 5
   isCollidingFront: 0

@@ -14,7 +14,6 @@ public class MenuButtonSceneLoader : MonoBehaviour
     [SerializeField] private TMP_Text text2;
 
     [SerializeField] private SceneChanger sceneChanger;
-    [SerializeField] private string sceneToLoadName;
     private float timer = 3.9f;
 
     [SerializeField] private int currentPlayersOnPlatform;
@@ -81,7 +80,7 @@ public class MenuButtonSceneLoader : MonoBehaviour
         {
             state = true;
             PlayerConfigurationManager.instance.GetComponent<PlayerInputManager>().DisableJoining();
-            sceneChanger.LoadGame(sceneToLoadName);
+            sceneChanger.LoadGame();
             {
                 SoundManager.Instance.PigeonFixSound();
             }

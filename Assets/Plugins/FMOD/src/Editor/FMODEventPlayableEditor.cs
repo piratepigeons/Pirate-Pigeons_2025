@@ -1,4 +1,4 @@
-﻿#if (UNITY_TIMELINE_EXIST || !UNITY_2019_1_OR_NEWER)
+﻿#if UNITY_TIMELINE_EXIST
 
 using System.Collections.Generic;
 using UnityEditor;
@@ -19,20 +19,22 @@ namespace FMODUnity
         private List<EditorParamRef> missingInitialParameterValues = new List<EditorParamRef>();
         private List<EditorParamRef> missingParameterAutomations = new List<EditorParamRef>();
 
-        SerializedProperty parametersProperty;
-        SerializedProperty parameterLinksProperty;
-        SerializedProperty parameterAutomationProperty;
+        private SerializedProperty parametersProperty;
+        private SerializedProperty parameterLinksProperty;
+        private SerializedProperty parameterAutomationProperty;
 
-        ListView parameterLinksView;
-        ListView initialParameterValuesView;
+        private ListView parameterLinksView;
+        private ListView initialParameterValuesView;
+
+        private string eventPath;
 
         public void OnEnable()
         {
             eventPlayable = target as FMODEventPlayable;
 
-            parametersProperty = serializedObject.FindProperty("template.parameters");
-            parameterLinksProperty = serializedObject.FindProperty("template.parameterLinks");
-            parameterAutomationProperty = serializedObject.FindProperty("template.parameterAutomation");
+            parametersProperty = serializedObject.FindProperty("Parameters");
+            parameterLinksProperty = serializedObject.FindProperty("Template.ParameterLinks");
+            parameterAutomationProperty = serializedObject.FindProperty("Template.ParameterAutomation");
 
             parameterLinksView = new ListView(parameterLinksProperty);
             parameterLinksView.drawElementWithLabelCallback = DrawParameterLink;
@@ -64,17 +66,15 @@ namespace FMODUnity
             RefreshTimelineEditor();
         }
 
-        string eventName;
-
         private void RefreshEventRef()
         {
-            if (eventName != eventPlayable.eventName)
+            if (eventPath != eventPlayable.EventReference.Path)
             {
-                eventName = eventPlayable.eventName;
+                eventPath = eventPlayable.EventReference.Path;
 
-                if (!string.IsNullOrEmpty(eventName))
+                if (!string.IsNullOrEmpty(eventPath))
                 {
-                    editorEventRef = EventManager.EventFromPath(eventName);
+                    editorEventRef = EventManager.EventFromPath(eventPath);
                 }
                 else
                 {
@@ -165,10 +165,14 @@ namespace FMODUnity
 
             RefreshEventRef();
 
-            var ev = serializedObject.FindProperty("eventName");
-            var stopType = serializedObject.FindProperty("stopType");
+            var eventReference = serializedObject.FindProperty("EventReference");
+            var stopType = serializedObject.FindProperty("StopType");
 
-            EditorGUILayout.PropertyField(ev, new GUIContent("Event"));
+            const string EventReferenceLabel = "Event";
+
+            EditorUtils.DrawLegacyEvent(serializedObject.FindProperty("eventName"), EventReferenceLabel);
+
+            EditorGUILayout.PropertyField(eventReference, new GUIContent(EventReferenceLabel));
             EditorGUILayout.PropertyField(stopType, new GUIContent("Stop Mode"));
 
             DrawInitialParameterValues();
@@ -179,7 +183,7 @@ namespace FMODUnity
             serializedObject.ApplyModifiedProperties();
         }
 
-        void DrawInitialParameterValues()
+        private void DrawInitialParameterValues()
         {
             if (editorEventRef != null)
             {
@@ -193,7 +197,7 @@ namespace FMODUnity
             }
         }
 
-        void DoAddInitialParameterValueMenu(Rect rect, UnityEditorInternal.ReorderableList list)
+        private void DoAddInitialParameterValueMenu(Rect rect, UnityEditorInternal.ReorderableList list)
         {
             GenericMenu menu = new GenericMenu();
             menu.AddItem(new GUIContent("All"), false, () =>
@@ -226,7 +230,7 @@ namespace FMODUnity
             menu.DropDown(rect);
         }
 
-        void DrawInitialParameterValue(Rect rect, float labelRight, int index, bool active, bool focused)
+        private void DrawInitialParameterValue(Rect rect, float labelRight, int index, bool active, bool focused)
         {
             if (editorEventRef == null)
             {
@@ -261,7 +265,7 @@ namespace FMODUnity
             }
         }
 
-        void DrawParameterAutomations()
+        private void DrawParameterAutomations()
         {
             if (editorEventRef != null)
             {
@@ -275,7 +279,7 @@ namespace FMODUnity
             }
         }
 
-        void DoAddParameterLinkMenu(Rect rect, UnityEditorInternal.ReorderableList list)
+        private void DoAddParameterLinkMenu(Rect rect, UnityEditorInternal.ReorderableList list)
         {
             GenericMenu menu = new GenericMenu();
             menu.AddItem(new GUIContent("All"), false, () =>
@@ -308,7 +312,7 @@ namespace FMODUnity
             menu.DropDown(rect);
         }
 
-        void DrawParameterLink(Rect rect, float labelRight, int index, bool active, bool focused)
+        private void DrawParameterLink(Rect rect, float labelRight, int index, bool active, bool focused)
         {
             if (editorEventRef == null)
             {
@@ -328,7 +332,7 @@ namespace FMODUnity
 
             int slot = linkProperty.FindPropertyRelative("Slot").intValue;
 
-            string slotName = string.Format("slot{0:D2}", slot);
+            string slotName = string.Format("Slot{0:D2}", slot);
             SerializedProperty valueProperty = parameterAutomationProperty.FindPropertyRelative(slotName);
 
             GUIStyle slotStyle = GUI.skin.label;
@@ -356,17 +360,17 @@ namespace FMODUnity
             }
         }
 
-        bool InitialParameterValueExists(string name)
+        private bool InitialParameterValueExists(string name)
         {
             return parametersProperty.ArrayContains("Name", p => p.stringValue == name);
         }
 
-        bool ParameterLinkExists(string name)
+        private bool ParameterLinkExists(string name)
         {
             return parameterLinksProperty.ArrayContains("Name", p => p.stringValue == name);
         }
 
-        void AddInitialParameterValue(EditorParamRef editorParamRef)
+        private void AddInitialParameterValue(EditorParamRef editorParamRef)
         {
             serializedObject.Update();
 
@@ -385,7 +389,7 @@ namespace FMODUnity
             }
         }
 
-        void DeleteInitialParameterValue(string name)
+        private void DeleteInitialParameterValue(string name)
         {
             serializedObject.Update();
 
@@ -397,7 +401,7 @@ namespace FMODUnity
             }
         }
 
-        void DeleteInitialParameterValue(int index)
+        private void DeleteInitialParameterValue(int index)
         {
             serializedObject.Update();
 
@@ -407,7 +411,7 @@ namespace FMODUnity
             RefreshMissingParameterLists();
         }
 
-        void AddParameterAutomation(string name)
+        private void AddParameterAutomation(string name)
         {
             serializedObject.Update();
 
@@ -441,16 +445,7 @@ namespace FMODUnity
             }
         }
 
-        static bool ClipHasCurves(TimelineClip clip)
-        {
-#if UNITY_2019_OR_NEWER
-            return clip.hasCurves;
-#else
-            return clip.curves != null && !clip.curves.empty;
-#endif
-        }
-
-        void DeleteParameterAutomation(string name)
+        private void DeleteParameterAutomation(string name)
         {
             serializedObject.Update();
 
@@ -462,11 +457,11 @@ namespace FMODUnity
             }
         }
 
-        void DeleteParameterAutomation(int index)
+        private void DeleteParameterAutomation(int index)
         {
             serializedObject.Update();
 
-            if (ClipHasCurves(eventPlayable.OwningClip))
+            if (eventPlayable.OwningClip.hasCurves)
             {
                 SerializedProperty linkProperty = parameterLinksProperty.GetArrayElementAtIndex(index);
                 SerializedProperty slotProperty = linkProperty.FindPropertyRelative("Slot");
@@ -486,7 +481,7 @@ namespace FMODUnity
             RefreshTimelineEditor();
         }
 
-        static EditorCurveBinding GetParameterCurveBinding(int index)
+        private static EditorCurveBinding GetParameterCurveBinding(int index)
         {
             EditorCurveBinding result = new EditorCurveBinding() {
                 path = string.Empty,
@@ -497,39 +492,9 @@ namespace FMODUnity
             return result;
         }
 
-        static void RefreshTimelineEditor()
+        private static void RefreshTimelineEditor()
         {
-#if UNITY_2018_3_OR_NEWER
             TimelineEditor.Refresh(RefreshReason.ContentsAddedOrRemoved);
-#else
-            object[] noParameters = new object[] { };
-
-            Type timelineType = typeof(TimelineEditor);
-
-            Assembly assembly = timelineType.Assembly;
-            Type windowType = assembly.GetType("UnityEditor.Timeline.TimelineWindow");
-
-            PropertyInfo windowInstanceProperty = windowType.GetProperty("instance");
-            object windowInstance = windowInstanceProperty.GetValue(null, noParameters);
-
-            if (windowInstance == null)
-            {
-                return;
-            }
-
-            PropertyInfo windowStateProperty = windowType.GetProperty("state");
-            object windowState = windowStateProperty.GetValue(windowInstance, noParameters);
-
-            if (windowState == null)
-            {
-                return;
-            }
-
-            Type windowStateType = windowState.GetType();
-            MethodInfo refreshMethod = windowStateType.GetMethod("Refresh", new Type[] { });
-
-            refreshMethod.Invoke(windowState, noParameters);
-#endif
         }
     }
 }

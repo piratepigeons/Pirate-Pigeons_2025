@@ -10,10 +10,8 @@ public class SceneChanger : MonoBehaviour
     public float longFadeTime = 1.5f;
     public string mainMenuName;
     public string characterSelectSceneName;
-    public string levelSelectSceneName;
-
-    //public string Level_n_SceneName;
-
+    public string playSceneName;
+    
     public string loseScreenName;
     public string winScreenName;
     bool state;
@@ -79,9 +77,9 @@ public class SceneChanger : MonoBehaviour
     }
 
     [ContextMenu("Load Game")]
-    public void LoadGame(string sceneToLoad)
+    public void LoadGame()
     {
-        Loader(sceneToLoad);
+        Loader(playSceneName);
     }
 
     public void LoadLoseScene()

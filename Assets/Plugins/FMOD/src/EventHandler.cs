@@ -6,18 +6,28 @@ namespace FMODUnity
     {
         public string CollisionTag = "";
 
-        void OnEnable()
+        protected virtual void Start()
+        {
+            HandleGameEvent(EmitterGameEvent.ObjectStart);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            HandleGameEvent(EmitterGameEvent.ObjectDestroy);
+        }
+
+        private void OnEnable()
         {
             HandleGameEvent(EmitterGameEvent.ObjectEnable);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             HandleGameEvent(EmitterGameEvent.ObjectDisable);
         }
 
-        #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
-        void OnTriggerEnter(Collider other)
+        #if UNITY_PHYSICS_EXIST
+        private void OnTriggerEnter(Collider other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag) || (other.attachedRigidbody && other.attachedRigidbody.CompareTag(CollisionTag)))
             {
@@ -25,7 +35,7 @@ namespace FMODUnity
             }
         }
 
-        void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag) || (other.attachedRigidbody && other.attachedRigidbody.CompareTag(CollisionTag)))
             {
@@ -34,8 +44,8 @@ namespace FMODUnity
         }
         #endif
 
-        #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
-        void OnTriggerEnter2D(Collider2D other)
+        #if UNITY_PHYSICS2D_EXIST
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
@@ -43,7 +53,7 @@ namespace FMODUnity
             }
         }
 
-        void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
             {
@@ -52,42 +62,42 @@ namespace FMODUnity
         }
         #endif
 
-        void OnCollisionEnter()
+        private void OnCollisionEnter()
         {
             HandleGameEvent(EmitterGameEvent.CollisionEnter);
         }
 
-        void OnCollisionExit()
+        private void OnCollisionExit()
         {
             HandleGameEvent(EmitterGameEvent.CollisionExit);
         }
 
-        void OnCollisionEnter2D()
+        private void OnCollisionEnter2D()
         {
             HandleGameEvent(EmitterGameEvent.CollisionEnter2D);
         }
 
-        void OnCollisionExit2D()
+        private void OnCollisionExit2D()
         {
             HandleGameEvent(EmitterGameEvent.CollisionExit2D);
         }
 
-        void OnMouseEnter()
+        private void OnMouseEnter()
         {
             HandleGameEvent(EmitterGameEvent.MouseEnter);
         }
 
-        void OnMouseExit()
+        private void OnMouseExit()
         {
             HandleGameEvent(EmitterGameEvent.MouseExit);
         }
 
-        void OnMouseDown()
+        private void OnMouseDown()
         {
             HandleGameEvent(EmitterGameEvent.MouseDown);
         }
 
-        void OnMouseUp()
+        private void OnMouseUp()
         {
             HandleGameEvent(EmitterGameEvent.MouseUp);
         }
