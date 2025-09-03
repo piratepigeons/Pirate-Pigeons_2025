@@ -3,7 +3,12 @@ guid: feb66e794aacaa34ea6af1b9ef4fe1c1
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obstacles
+    second: {fileID: 2100000, guid: 96dec48ca8dbfd64882e227f5de9cb46, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
